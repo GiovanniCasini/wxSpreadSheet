@@ -34,7 +34,7 @@ class MyFrame : public wxFrame
 {
 public:
     MyFrame(Observer o);
-    std::vector<Observer> observers;
+    std::vector<Observer*> observers;
     wxGrid* grid = new wxGrid( this, wxID_ANY, wxPoint( 0, 0 ), wxSize( 420, 300 ) );
     wxGrid* grid2 = new wxGrid( this, wxID_ANY, wxPoint( 0, 350 ), wxSize( 400, 100 ) );
 private:
@@ -43,8 +43,13 @@ private:
     void OnAbout(wxCommandEvent& event);
     void OnWrite(wxGridEvent& event);
 
-    void attach(Observer o){
+    void attach(Observer* o){
         observers.push_back(o);
+    }
+    void notify(){
+        for(int i = 0; i < observers.size(); i++){
+            observers[i]->Update(*grid, *grid2);
+        }
     }
 };
 
@@ -76,7 +81,7 @@ bool MyApp::OnInit()
 MyFrame::MyFrame(Observer o)
         : wxFrame(NULL, wxID_ANY, "SpreadSheet", wxDefaultPosition, wxSize(450,500))
 {
-    this->attach(o);
+    this->attach(&o);
     wxMenu *menuFile = new wxMenu;
     menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
                      "Help string shown in status bar for this menu item");
@@ -136,7 +141,7 @@ void MyFrame::OnHello(wxCommandEvent& event)
 
 void MyFrame::OnWrite(wxGridEvent& event)
 {
-    
+    notify();
 }
 
  /*** end of OnInit ***/
