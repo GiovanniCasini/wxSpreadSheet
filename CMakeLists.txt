@@ -9,6 +9,7 @@ set(
   PROG_SRCS
   source/main.cpp
   source/mainwindow.cpp
+  source/observer.h
 )
 
 # Request the required wxWidgets libs.
