@@ -121,7 +121,7 @@ MyFrame::MyFrame(Observer o)
     //Bind(wxEVT_GRID_CELL_CHANGED, &MyFrame::OnWrite, this, 5);
 
     //observers[0].Update(*grid, *grid2);
-    //...
+    //.....
 }
 
 
