@@ -35,20 +35,13 @@ class MyFrame : public wxFrame
 public:
     MyFrame(Observer o);
     std::vector<Observer> observers;
-    wxGrid* grid = new wxGrid( this,
-                    5,
-                    wxPoint( 0, 0 ),
-                    wxSize( 420, 300 ) );
-    wxGrid* grid2 = new wxGrid( this,
-                    6,
-                    wxPoint( 0, 350 ),
-                    wxSize( 400, 100 ) );
+    wxGrid* grid = new wxGrid( this, wxID_ANY, wxPoint( 0, 0 ), wxSize( 420, 300 ) );
+    wxGrid* grid2 = new wxGrid( this, wxID_ANY, wxPoint( 0, 350 ), wxSize( 400, 100 ) );
 private:
     void OnHello(wxCommandEvent& event);
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
-    //void OnWrite(wxGridEvent& event);
-    
+    void OnWrite(wxGridEvent& event);
 
     void attach(Observer o){
         observers.push_back(o);
@@ -118,10 +111,9 @@ MyFrame::MyFrame(Observer o)
     Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
     Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
-    //Bind(wxEVT_GRID_CELL_CHANGED, &MyFrame::OnWrite, this, 5);
+    grid->Bind(wxEVT_GRID_CELL_CHANGED, &MyFrame::OnWrite, this);
 
     //observers[0].Update(*grid, *grid2);
-    //.....
 }
 
 
@@ -142,8 +134,10 @@ void MyFrame::OnHello(wxCommandEvent& event)
     wxLogMessage("Welcome on this SpreadSheet!");
 }
 
-
-
+void MyFrame::OnWrite(wxGridEvent& event)
+{
+    
+}
 
  /*** end of OnInit ***/
 /*********************************** end of main.cpp ***********************************/
