@@ -18,4 +18,4 @@ class Observer{
             }
             b.SetCellValue(0,0,std::to_string(sum));
         }
-}; //..
+};
