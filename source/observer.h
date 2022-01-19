@@ -8,7 +8,6 @@ class Observer{
     public:
         void Update(wxGrid &a, wxGrid &b){
             int sum = 0;
-            float mean;
             int max = -100000000;
             int min = 100000000;
             int prod = 1;
@@ -27,7 +26,7 @@ class Observer{
                     }
                 }
             }
-            mean = float(sum / count);
+            float mean = float(sum) / count;
 
             b.SetCellValue(0,0,std::to_string(sum));
             b.SetCellValue(0,1,std::to_string(mean));
