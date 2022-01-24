@@ -10,7 +10,7 @@
 * Include files
 ****************************************************************************************/
 #include "mainwindow.h"
-#include "observer.h"
+#include "griglia.h"
 #include <wx/wxprec.h>
 #include <wx/grid.h>
 #ifndef WX_PRECOMP
@@ -26,53 +26,22 @@ class MyApp : public wxApp
   public:
     virtual bool OnInit();
 };
+    
 
-class MyFrameTest : public wxWindow{
-  public:
-    MyFrameTest(Observer* o){
-      attach(o);
-    }
-    std::vector<Observer*> observers;
-    wxGrid* grid = new wxGrid( this, wxID_ANY, wxPoint( 0, 0 ), wxSize( 420, 300 ) );
-    wxGrid* grid2 = new wxGrid( this, wxID_ANY, wxPoint( 0, 350 ), wxSize( 400, 100 ) );
-private:
-    void attach(Observer* o){
-        observers.push_back(o);
-    }
-    void notify(){
-        for(int i = 0; i < observers.size(); i++){
-            observers[i]->Update(*grid, *grid2);
-        }
-    }
-};
 
 class MyFrame : public wxFrame
 {
 public:
-    MyFrame(Observer* o, int test): wxFrame(NULL, wxID_ANY, "SpreadSheet", wxDefaultPosition, wxSize(450,500)){
-      this->attach(o);
-    }
-    MyFrame(Observer o);
-    MyFrame(){
-
-    }
-    std::vector<Observer*> observers;
+    MyFrame(Observer* o);
     wxGrid* grid = new wxGrid( this, wxID_ANY, wxPoint( 0, 0 ), wxSize( 420, 300 ) );
     wxGrid* grid2 = new wxGrid( this, wxID_ANY, wxPoint( 0, 350 ), wxSize( 400, 100 ) );
+
+    Griglia* griglia;
 private:
     void OnHello(wxCommandEvent& event);
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
     void OnWrite(wxGridEvent& event);
-
-    void attach(Observer* o){
-        observers.push_back(o);
-    }
-    void notify(){
-        for(int i = 0; i < observers.size(); i++){
-            observers[i]->Update(*grid, *grid2);
-        }
-    }
 };
 
 enum
@@ -81,10 +50,10 @@ enum
 };
 
 
-MyFrame::MyFrame(Observer o)
+MyFrame::MyFrame(Observer* o)
         : wxFrame(NULL, wxID_ANY, "SpreadSheet", wxDefaultPosition, wxSize(450,500))
 {
-    this->attach(&o);
+    
     wxMenu *menuFile = new wxMenu;
     menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
                      "Help string shown in status bar for this menu item");
@@ -102,17 +71,19 @@ MyFrame::MyFrame(Observer o)
     grid->SetGridLineColour(*wxBLACK);
 
     
-    grid2->CreateGrid( 1, 5 );
+    grid2->CreateGrid( 1, 4 );
     grid2->SetGridLineColour(*wxBLACK);
     grid2->SetRowLabelSize(0);
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 4; i++){
         grid2->SetReadOnly(0, i, true);
     }
     grid2->SetColLabelValue(0, "SUM");
-    grid2->SetColLabelValue(1, "MEAN");
-    grid2->SetColLabelValue(2, "MAX");
-    grid2->SetColLabelValue(3, "MIN");
-    grid2->SetColLabelValue(4, "PROD");
+    //grid2->SetColLabelValue(5, "MEAN");
+    grid2->SetColLabelValue(1, "MAX");
+    grid2->SetColLabelValue(2, "MIN");
+    grid2->SetColLabelValue(3, "PROD");
+
+    griglia = new Griglia(grid, grid2, o);
 
     CreateStatusBar();
     SetStatusText("This is a SpreadSheet!");
@@ -140,7 +111,7 @@ void MyFrame::OnHello(wxCommandEvent& event)
 
 void MyFrame::OnWrite(wxGridEvent& event)
 {
-    notify();
+    griglia->setGridValue(event.GetRow(), event.GetCol(), wxAtof(grid->GetCellValue(event.GetRow(),event.GetCol())));
 }
 
 #endif /* MAIN_H */

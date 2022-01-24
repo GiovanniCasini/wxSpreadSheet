@@ -35,6 +35,8 @@ set(
   source/mainwindow.cpp
   source/observer.h
   source/main.h
+  source/griglia.h
+  source/cella.h
 )
 
 # Request the required wxWidgets libs.

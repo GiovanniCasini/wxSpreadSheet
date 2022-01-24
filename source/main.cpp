@@ -37,7 +37,7 @@ wxIMPLEMENT_APP(MyApp);
 bool MyApp::OnInit()
 {
     Observer* OBS = new Observer();
-    MyFrame *frame = new MyFrame(*OBS);
+    MyFrame *frame = new MyFrame(OBS);
 
     frame->Show(true);
     return true;
@@ -48,7 +48,6 @@ bool MyApp::OnInit()
   
   MainWindow *mainWindow = new MainWindow(wxT("Prova"), 640, 480);
   mainWindow->Show(true);
-
   return true;
 } */
 
