@@ -16,21 +16,12 @@
     #include <wx/wx.h>
 #endif
 
-/****************************************************************************************
-* Macro definitions
-****************************************************************************************/
-/* Macro which creates the application instance and starts it. */
-//IMPLEMENT_APP(MyApp)
-
-
 /************************************************************************************//**
 ** \brief     Called upon application initialization. 
 ** \return    True if the initialization was successful. False if anything failed, which
 **            prevents the application from continuing.
 **
 ****************************************************************************************/
-
-
 
 wxIMPLEMENT_APP(MyApp);
 
@@ -42,14 +33,6 @@ bool MyApp::OnInit()
     frame->Show(true);
     return true;
 }
-
-/*bool MyApp::OnInit()
-{
-  
-  MainWindow *mainWindow = new MainWindow(wxT("Prova"), 640, 480);
-  mainWindow->Show(true);
-  return true;
-} */
 
  /*** end of OnInit ***/
 /*********************************** end of main.cpp ***********************************/

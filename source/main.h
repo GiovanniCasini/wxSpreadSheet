@@ -27,16 +27,14 @@ class MyApp : public wxApp
     virtual bool OnInit();
 };
     
-
-
 class MyFrame : public wxFrame
 {
 public:
     MyFrame(Observer* o);
-    wxGrid* grid = new wxGrid( this, wxID_ANY, wxPoint( 0, 0 ), wxSize( 420, 300 ) );
-    wxGrid* grid2 = new wxGrid( this, wxID_ANY, wxPoint( 0, 350 ), wxSize( 400, 100 ) );
-
+    wxGrid* grid = new wxGrid( this, wxID_ANY, wxPoint(0, 0), wxSize(485, 300));
+    wxGrid* grid2 = new wxGrid( this, wxID_ANY, wxPoint(80, 325), wxSize(400, 60));
     Griglia* griglia;
+
 private:
     void OnHello(wxCommandEvent& event);
     void OnExit(wxCommandEvent& event);
@@ -49,14 +47,11 @@ enum
     ID_Hello = 1
 };
 
-
 MyFrame::MyFrame(Observer* o)
-        : wxFrame(NULL, wxID_ANY, "SpreadSheet", wxDefaultPosition, wxSize(450,500))
+        : wxFrame(NULL, wxID_ANY, "SpreadSheet", wxDefaultPosition, wxSize(550,500))
 {
-    
     wxMenu *menuFile = new wxMenu;
-    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
-                     "Help string shown in status bar for this menu item");
+    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H", "Help string shown in status bar for this menu item");
     menuFile->AppendSeparator();
     menuFile->Append(wxID_EXIT);
     wxMenu *menuHelp = new wxMenu;
@@ -66,22 +61,20 @@ MyFrame::MyFrame(Observer* o)
     menuBar->Append(menuHelp, "&Help");
     SetMenuBar(menuBar);
 
-    
-    grid->CreateGrid( 10, 4 );
+    grid->CreateGrid(10, 5);
     grid->SetGridLineColour(*wxBLACK);
 
-    
-    grid2->CreateGrid( 1, 4 );
+    grid2->CreateGrid(1, 5);
     grid2->SetGridLineColour(*wxBLACK);
     grid2->SetRowLabelSize(0);
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 4; i++)
         grid2->SetReadOnly(0, i, true);
-    }
     grid2->SetColLabelValue(0, "SUM");
-    //grid2->SetColLabelValue(5, "MEAN");
     grid2->SetColLabelValue(1, "MAX");
     grid2->SetColLabelValue(2, "MIN");
     grid2->SetColLabelValue(3, "PROD");
+    grid2->SetColLabelValue(4, "MEAN");
+    grid2->SetLabelBackgroundColour(*wxGREEN);
 
     griglia = new Griglia(grid, grid2, o);
 
