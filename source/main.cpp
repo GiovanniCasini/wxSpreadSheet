@@ -27,8 +27,8 @@ wxIMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {
-    Observer* OBS = new Observer();
-    MyFrame *frame = new MyFrame(OBS);
+    
+    MyFrame *frame = new MyFrame();
 
     frame->Show(true);
     return true;

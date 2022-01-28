@@ -10,7 +10,7 @@
 * Include files
 ****************************************************************************************/
 #include "mainwindow.h"
-#include "griglia.h"
+#include "Grid.h"
 #include <wx/wxprec.h>
 #include <wx/grid.h>
 #ifndef WX_PRECOMP
@@ -30,7 +30,7 @@ class MyApp : public wxApp
 class MyFrame : public wxFrame
 {
 public:
-    MyFrame(Observer* o);
+    MyFrame();
     wxGrid* grid = new wxGrid( this, wxID_ANY, wxPoint(0, 0), wxSize(485, 300));
     wxGrid* grid2 = new wxGrid( this, wxID_ANY, wxPoint(80, 325), wxSize(400, 60));
     Griglia* griglia;
@@ -47,7 +47,7 @@ enum
     ID_Hello = 1
 };
 
-MyFrame::MyFrame(Observer* o)
+MyFrame::MyFrame()
         : wxFrame(NULL, wxID_ANY, "SpreadSheet", wxDefaultPosition, wxSize(550,500))
 {
     wxMenu *menuFile = new wxMenu;
@@ -76,7 +76,9 @@ MyFrame::MyFrame(Observer* o)
     grid2->SetColLabelValue(4, "MEAN");
     grid2->SetLabelBackgroundColour(*wxGREEN);
 
-    griglia = new Griglia(grid, grid2, o);
+    griglia = new Griglia(grid, grid2);
+    Observer* obs = new Observer(griglia);
+    
 
     CreateStatusBar();
     SetStatusText("This is a SpreadSheet!");

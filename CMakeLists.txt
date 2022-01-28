@@ -11,7 +11,6 @@ include_directories(googletest/include) # this is so we can #include <gtest/gtes
 set(
   PROG_SRCS
   source/mainwindow.cpp
-  source/observer.h
   source/main.h
   test/mytest.cpp
 )
@@ -33,10 +32,8 @@ set(
   PROG_SRCS
   source/main.cpp
   source/mainwindow.cpp
-  source/observer.h
   source/main.h
-  source/griglia.h
-  source/cella.h
+  source/Grid.h
 )
 
 # Request the required wxWidgets libs.

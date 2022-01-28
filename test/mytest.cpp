@@ -17,8 +17,9 @@ class TestSpreadSheet : public testing::Test{
 };
 
 TEST(TestSpreadSheet, TestSumT){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 0, 5);
     g->setGridValue(2, 0, 10);
@@ -28,8 +29,8 @@ TEST(TestSpreadSheet, TestSumT){
 }
 
 TEST(TestSpreadSheet, TestMaxT){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 1, 3);
     g->setGridValue(2, 1, 10);
@@ -39,8 +40,8 @@ TEST(TestSpreadSheet, TestMaxT){
 }
 
 TEST(TestSpreadSheet, TestMinT){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(1, 2, 5);
     g->setGridValue(2, 2, 13);
@@ -50,8 +51,8 @@ TEST(TestSpreadSheet, TestMinT){
 }
 
 TEST(TestSpreadSheet, TestProdT){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 3, 2);
     g->setGridValue(5, 3, 4);
@@ -61,8 +62,8 @@ TEST(TestSpreadSheet, TestProdT){
 }
 
 TEST(TestSpreadSheet, TestMeanT){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 4, 2);
     g->setGridValue(1, 4, 4);
@@ -72,8 +73,8 @@ TEST(TestSpreadSheet, TestMeanT){
 }
 
 TEST(TestSpreadSheet, TestSumF){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 0, 5);
     g->setGridValue(2, 0, 10);
@@ -83,8 +84,8 @@ TEST(TestSpreadSheet, TestSumF){
 }
 
 TEST(TestSpreadSheet, TestMaxF){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 1, 30);
     g->setGridValue(2, 1, 10);
@@ -94,8 +95,8 @@ TEST(TestSpreadSheet, TestMaxF){
 }
 
 TEST(TestSpreadSheet, TestMinF){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(1, 2, 5);
     g->setGridValue(2, 2, 13);
@@ -105,8 +106,8 @@ TEST(TestSpreadSheet, TestMinF){
 }
 
 TEST(TestSpreadSheet, TestProdF){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 3, 2);
     g->setGridValue(5, 3, 3);
@@ -116,8 +117,8 @@ TEST(TestSpreadSheet, TestProdF){
 }
 
 TEST(TestSpreadSheet, TestMeanF){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 4, 7);
     g->setGridValue(1, 4, 4);
@@ -127,8 +128,8 @@ TEST(TestSpreadSheet, TestMeanF){
 }
 
 TEST(TestSpreadSheet, TestChangeSumValue){
-    Observer* obs = new Observer();
-    Griglia* g = new Griglia(obs);
+    Griglia* g = new Griglia();
+    Observer* obs = new Observer(g);
 
     g->setGridValue(0, 0, 1);
     g->setGridValue(1, 0, 2);
