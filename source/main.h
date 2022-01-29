@@ -10,7 +10,7 @@
 * Include files
 ****************************************************************************************/
 #include "mainwindow.h"
-#include "Grid.h"
+#include "Observer.h"
 #include <wx/wxprec.h>
 #include <wx/grid.h>
 #ifndef WX_PRECOMP
